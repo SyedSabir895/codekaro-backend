@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
+const quizRoutes = require("./routes/quizRoutes");
 const helmet = require('helmet');
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(helmet({
 
 // Routes
 app.use("/api/auth", userRoutes);
+app.use("/api/quiz", quizRoutes);
 
 // Connect to MongoDB
 mongoose
