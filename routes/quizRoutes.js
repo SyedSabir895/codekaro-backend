@@ -1,4 +1,5 @@
 const express = require("express");
+const { requireAuth } = require("../middleware/auth");
 const router = express.Router();
 
 const QUIZ_SCHEMA = {
@@ -52,7 +53,7 @@ const parseQuestions = (text) => {
 };
 
 // Generate a 5-question quiz with Gemini
-router.post("/generate", async (req, res) => {
+router.post("/generate", requireAuth, async (req, res) => {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return res.status(500).json({ error: "GEMINI_API_KEY is not set" });
